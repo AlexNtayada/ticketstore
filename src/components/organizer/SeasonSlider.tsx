@@ -109,7 +109,7 @@ export function SeasonSlider({ seasons, upcoming }: { seasons: OrgSeason[]; upco
         <ul
           key={season.id}
           ref={track}
-          className="season-track -mx-[var(--gutter)] flex scroll-px-[var(--gutter)] snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth px-[var(--gutter)] pb-2"
+          className="season-track mx-[calc(50%-50vw)] flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2"
         >
           {season.shows.map((s, i) => {
             const next = idx === 0 && !s.date ? upcoming[s.show] : undefined;
@@ -119,22 +119,21 @@ export function SeasonSlider({ seasons, upcoming }: { seasons: OrgSeason[]; upco
                   {s.poster ? (
                     <Image src={s.poster} alt={`Afișul spectacolului ${s.title}`} fill sizes="(min-width: 640px) 260px, 62vw" className="object-cover" />
                   ) : null}
-                  <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-[#0b1220] via-[#0b1220]/30 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 p-4 text-white">
-                    {s.note ? <p className="t-label mb-1.5 text-white/70">{s.note}</p> : null}
-                    <p className="t-display-base text-[1.2rem] leading-tight">{s.title}</p>
-                    {s.date ? (
-                      <p className="t-label mt-2 tabular text-white/85">
-                        {when(s.date, s.time)}
-                        {s.venue ? <span className="block text-white/60">{s.venue}</span> : null}
-                      </p>
-                    ) : next ? (
-                      <p className="t-label mt-2 tabular text-white/85">
-                        Următoarea: {when(next.date, next.time)}
-                        <span className="block text-white/60">{next.venue}</span>
-                      </p>
-                    ) : null}
-                  </div>
+                </div>
+                <div className="mt-3 px-1">
+                  {s.note ? <p className="t-label mb-1 text-accent">{s.note}</p> : null}
+                  <p className="font-display text-[1.05rem] font-semibold leading-snug">{s.title}</p>
+                  {s.date ? (
+                    <p className="t-label mt-1 tabular text-muted">
+                      {when(s.date, s.time)}
+                      {s.venue ? ` · ${s.venue}` : ""}
+                    </p>
+                  ) : next ? (
+                    <p className="t-label mt-1 tabular text-muted">
+                      Următoarea: {when(next.date, next.time)}
+                      <span className="block">{next.venue}</span>
+                    </p>
+                  ) : null}
                 </div>
               </li>
             );

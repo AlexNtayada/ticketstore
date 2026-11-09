@@ -1,6 +1,7 @@
 "use client";
 
 import { MapPin, X } from "lucide-react";
+import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 import {
   CATEGORY_LABELS,
@@ -57,6 +58,13 @@ export function EventCalendar({ org, buildNow }: { org: OrganizerConfig; buildNo
     (acc[e.date] ??= []).push(e);
     return acc;
   }, {});
+  // Poster per show: catalogue first, then season line-ups (some current shows are only listed there).
+  const posters = useMemo(() => {
+    const m = new Map<string, string>();
+    for (const s of org.seasons.flatMap((x) => x.shows)) if (s.poster) m.set(s.show, s.poster);
+    for (const c of org.catalogue) if (c.poster) m.set(c.slug, c.poster);
+    return m;
+  }, [org.catalogue, org.seasons]);
   const showTitle = show ? org.events.find((e) => e.show === show)?.title : null;
 
   return (
@@ -66,7 +74,7 @@ export function EventCalendar({ org, buildNow }: { org: OrganizerConfig; buildNo
           <h2 id="calendar-title" className="t-display-base t-heading">
             {all ? "Tot calendarul" : org.calendar.title}
           </h2>
-          <button type="button" onClick={() => setAll((v) => !v)} className="org-link t-label self-start md:self-auto">
+          <button type="button" onClick={() => setAll((v) => !v)} className="org-ghost self-start md:self-auto">
             {all ? org.calendar.title : "Tot calendarul"} →
           </button>
         </div>
@@ -119,9 +127,15 @@ export function EventCalendar({ org, buildNow }: { org: OrganizerConfig; buildNo
                   {items.map((e) => {
                     const price = priceLabel(org, e.priceFrom);
                     return (
-                      <li key={e.id} className="grid grid-cols-[3.5rem_1fr] items-center gap-x-4 gap-y-3 px-4 py-3.5 md:grid-cols-[4rem_1fr_auto] md:px-5">
-                        <p className="t-display-base text-[1.15rem] tabular text-accent">{e.time}</p>
+                      <li key={e.id} className="grid grid-cols-[3.25rem_1fr] items-center gap-x-4 gap-y-3 px-3 py-3 md:grid-cols-[3.25rem_4rem_1fr_auto] md:px-4">
+                        <div className="relative aspect-[7/10] overflow-hidden rounded-lg bg-surface md:row-span-1">
+                          {posters.get(e.show) ? (
+                            <Image src={posters.get(e.show)!} alt="" fill sizes="52px" className="object-cover" />
+                          ) : null}
+                        </div>
+                        <p className="t-display-base hidden text-[1.15rem] tabular text-accent md:block">{e.time}</p>
                         <div className="min-w-0">
+                          <p className="t-display-base mb-0.5 text-[0.95rem] tabular text-accent md:hidden">{e.time}</p>
                           <p className="flex flex-wrap items-center gap-x-2.5 gap-y-1">
                             <span className="font-display text-[1.05rem] font-semibold leading-tight">{e.title}</span>
                             <span className="org-tag">{CATEGORY_LABELS[e.category]}</span>

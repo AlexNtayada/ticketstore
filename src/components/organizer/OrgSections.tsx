@@ -126,9 +126,9 @@ export function Subscription({ org }: { org: OrganizerConfig }) {
   if (!org.subscription) return null;
   const { title, body, note } = org.subscription;
   return (
-    <section id="abonament" aria-labelledby="abonament-title" className="org-section">
-      <div className="frame">
-        <div className="sub-panel grid gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+    <section id="abonament" aria-labelledby="abonament-title" className="sub-panel">
+      <div className="frame grid w-full gap-10 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+        <div className="contents">
           <div>
             <span className="sub-badge t-label">
               <span aria-hidden className="sub-badge-dot" />

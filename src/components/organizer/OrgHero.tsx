@@ -87,7 +87,7 @@ export function OrgHero({
             </span>
           </h1>
           <p
-            className="enter mt-3 font-display text-[clamp(1.1rem,1.8vw,1.6rem)] text-fg/85"
+            className="enter mt-3 font-sans text-[clamp(1.1rem,1.7vw,1.5rem)] font-normal text-fg/85"
             style={{ ["--i" as string]: 1 }}
           >
             {featured.subtitle}

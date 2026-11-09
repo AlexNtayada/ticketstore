@@ -591,9 +591,11 @@ html[data-skin="sky"] #hero .hero-media::after {
 .org-link {
   color: var(--color-accent);
   font-weight: 600;
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-  text-underline-offset: 4px;
+  text-decoration: none;
+  transition: opacity var(--motion-fast);
+}
+.org-link:hover {
+  opacity: 0.75;
 }
 .org-select {
   height: 44px;
@@ -741,8 +743,10 @@ html[data-skin] .org-hero-meta .t-meta {
 .sub-panel {
   position: relative;
   overflow: hidden;
-  border-radius: 32px;
-  padding: clamp(28px, 5vw, 72px);
+  display: flex;
+  align-items: center;
+  padding-block: clamp(56px, 8vw, 96px);
+  margin-block: clamp(40px, 6vw, 80px);
   background:
     radial-gradient(70% 90% at 100% 0%, color-mix(in srgb, var(--color-accent) 55%, transparent), transparent 60%),
     radial-gradient(50% 60% at 0% 100%, rgba(255, 154, 92, 0.22), transparent 70%),
@@ -836,12 +840,10 @@ html[data-skin] #site-footer.org-footer {
   padding: 14px 16px;
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  transition: background-color var(--motion-fast), border-color var(--motion-fast);
+  transition: background-color var(--motion-fast);
 }
 .org-footer-ts:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: #ff9a5c;
+  background: rgba(255, 255, 255, 0.11);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -851,4 +853,43 @@ html[data-skin] #site-footer.org-footer {
   .sub-badge-dot {
     animation: none;
   }
+}
+
+/* Hand cursor on everything clickable (Tailwind 4 resets buttons to default). */
+a[href],
+button:not(:disabled),
+[role="tab"],
+select,
+label:has(select) {
+  cursor: pointer;
+}
+
+.org-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: transparent;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  transition: border-color var(--motion-fast), color var(--motion-fast), background-color var(--motion-fast);
+}
+.org-ghost:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+@media (min-width: 1024px) {
+  .sub-panel {
+    min-height: 600px;
+  }
+}
+.season-track {
+  --bleed-pad: max(var(--gutter), calc((100vw - var(--content-max)) / 2));
+  padding-inline: var(--bleed-pad);
+  scroll-padding-inline: var(--bleed-pad);
 }
