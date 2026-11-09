@@ -731,12 +731,11 @@ html[data-skin] .org-hero-meta .t-meta {
 .season-track::-webkit-scrollbar {
   display: none;
 }
-.season-card > div {
-  transition: transform 500ms var(--ease-out-expo), box-shadow 500ms var(--ease-out-expo);
+.season-card img {
+  transition: transform 600ms var(--ease-out-expo);
 }
-.season-card:hover > div {
-  transform: translateY(-6px);
-  box-shadow: 0 24px 40px -18px rgba(11, 18, 32, 0.45);
+.season-card:hover img {
+  transform: scale(1.04);
 }
 
 /* Subscription panel */
