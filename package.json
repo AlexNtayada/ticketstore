@@ -12,7 +12,9 @@
     "check": "npm run typecheck && npm run lint && npm run build",
     "export:preview": "PREVIEW_ENTRY=1 node scripts/export-relative.mjs",
     "demo-media": "python3 scripts/generate-demo-media.py",
-    "build:static": "STATIC_EXPORT=1 next build"
+    "build:static": "STATIC_EXPORT=1 next build",
+    "build:concordia": "SITE=concordia STATIC_EXPORT=1 next build",
+    "dev:concordia": "SITE=concordia next dev"
   },
   "dependencies": {
     "lucide-react": "^1.70.0",

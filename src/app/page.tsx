@@ -8,27 +8,47 @@ import type { NextDate } from "@/components/organizer/SeasonSlider";
 import { PresentationNotice } from "@/components/ui/PresentationNotice";
 import { organizer } from "@/config/organizer";
 import { featuredEvent, formatDateParts, sortEvents, ticketHref, todayIn } from "@/lib/organizer-utils";
+import { CompanyPage } from "@/components/company/CompanyPage";
+import { company } from "@/config/organizers/concordia";
+
+/**
+ * Which minisite this build renders. Set at build time:
+ *   SITE=concordia npm run build:static  → Compania de Teatru Concordia (structure of minisites/dist/301)
+ *   (unset)                              → Stagiunea Dalles · Luceafărul (structure of minisites/dist/56)
+ */
+const SITE = process.env.SITE === "concordia" ? "concordia" : "dalles";
 
 /**
  * Organizer minisite (one client, many events). The single-event template is
  * still available as <EventPage /> in src/components/EventPage.tsx.
  */
-export const metadata: Metadata = {
+// Ticketstore favicon (ticketstore.ro/media/img/icons).
+const icons: Metadata["icons"] = {
+  icon: [
+    { url: "/icons/ts-16.png", sizes: "16x16", type: "image/png" },
+    { url: "/icons/ts-32.png", sizes: "32x32", type: "image/png" },
+    { url: "/icons/ts-48.png", sizes: "48x48", type: "image/png" },
+  ],
+  apple: "/icons/ts-48.png",
+};
+
+export const metadata: Metadata =
+  SITE === "concordia"
+    ? {
+        title: company.name,
+        description: company.description,
+        openGraph: { title: company.name, description: company.tagline, images: [company.hero.image.src] },
+        icons,
+      }
+    : {
   title: organizer.name,
   description: organizer.description,
   openGraph: { title: organizer.name, description: organizer.description, images: [organizer.featured.image.src] },
-  // Ticketstore favicon (ticketstore.ro/media/img/icons).
-  icons: {
-    icon: [
-      { url: "/icons/ts-16.png", sizes: "16x16", type: "image/png" },
-      { url: "/icons/ts-32.png", sizes: "32x32", type: "image/png" },
-      { url: "/icons/ts-48.png", sizes: "48x48", type: "image/png" },
-    ],
-    apple: "/icons/ts-48.png",
-  },
-};
+        icons,
+      };
 
 export default function Page() {
+  if (SITE === "concordia") return <CompanyPage org={company} />;
   const org = organizer;
   // Static export: "now" is the build time; the calendar re-checks in the browser.
   const buildNow = Date.now();
