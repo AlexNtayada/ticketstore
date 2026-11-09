@@ -119,9 +119,13 @@ export function SeasonSlider({ seasons, upcoming }: { seasons: OrgSeason[]; upco
                   {s.poster ? (
                     <Image src={s.poster} alt={`Afișul spectacolului ${s.title}`} fill sizes="(min-width: 640px) 260px, 62vw" className="object-cover" />
                   ) : null}
+                  {s.note ? (
+                    <span className="absolute left-3 top-3 max-w-[calc(100%-1.5rem)] rounded-full bg-white px-3 py-1 text-[0.75rem] font-semibold text-[#101828] shadow-sm">
+                      {s.note}
+                    </span>
+                  ) : null}
                 </div>
                 <div className="mt-3 px-1">
-                  {s.note ? <p className="t-label mb-1 text-accent">{s.note}</p> : null}
                   <p className="font-display text-[1.05rem] font-semibold leading-snug">{s.title}</p>
                   {s.date ? (
                     <p className="t-label mt-1 tabular text-muted">
