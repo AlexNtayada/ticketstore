@@ -62,6 +62,8 @@ export interface CompanyConfig {
   /** Shorter name for the header. */
   shortName?: string;
   tagline: string;
+  /** Brand colour replacing the theme accent, and a lighter tint for use on dark backgrounds. */
+  accent?: { color: string; light: string };
   description: string;
   timezone: string;
   currencyLabel: string;

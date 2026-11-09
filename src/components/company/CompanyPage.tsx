@@ -30,12 +30,10 @@ function Hero({ org, buildNow }: { org: CompanyConfig; buildNow: number }) {
       <div className="hero-media absolute inset-0 -z-10">
         <Image src={image.src} alt={image.alt} fill priority sizes="100vw" quality={78} className="object-cover" style={{ objectPosition: image.focus ?? "50% 50%" }} />
       </div>
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-r from-black/55 via-black/15 to-transparent" />
       <div className="frame relative flex flex-1 flex-col pb-[clamp(20px,4vh,44px)] pt-[calc(var(--header-h)+40px)]">
-        <div className="my-auto py-8 text-center">
-          <p className="t-label enter text-white/75" style={{ ["--i" as string]: 0 }}>
-            Teatru independent · în turneu prin țară
-          </p>
-          <h1 id="hero-title" className="t-display-base mx-auto mt-4 max-w-[18ch] text-[clamp(2.4rem,5.4vw,4.6rem)] !leading-[1.04] text-white">
+        <div className="mt-auto py-8 md:mb-auto">
+          <h1 id="hero-title" className="t-display-base max-w-[16ch] text-[clamp(2.4rem,5.4vw,4.6rem)] !leading-[1.04] text-white">
             <span className="mask-line hero-anim">
               <span>
                 {org.name}
@@ -45,20 +43,12 @@ function Hero({ org, buildNow }: { org: CompanyConfig; buildNow: number }) {
               </span>
             </span>
           </h1>
-          <p className="enter mx-auto mt-4 max-w-[36ch] font-sans text-[clamp(1.1rem,1.7vw,1.45rem)] text-white/85" style={{ ["--i" as string]: 1 }}>
+          <p className="enter mt-4 max-w-[36ch] font-sans text-[clamp(1.1rem,1.7vw,1.45rem)] text-white/85" style={{ ["--i" as string]: 1 }}>
             {org.tagline}
           </p>
-          <div className="enter mx-auto mt-8 flex max-w-md flex-col items-stretch gap-3 sm:flex-row sm:justify-center" style={{ ["--i" as string]: 2 }}>
-            <a href="#calendar" className="cta inline-flex h-12 items-center justify-center rounded-full bg-accent px-6 font-semibold text-on-accent">
-              Vezi calendarul
-            </a>
-            <a href="#spectacole" className="co-ghost-light inline-flex h-12 items-center justify-center rounded-full px-6 font-semibold">
-              Spectacole
-            </a>
-          </div>
         </div>
 
-        <div className="org-hero-meta enter grid gap-4 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-8" style={{ ["--i" as string]: 3 }}>
+        <div className="org-hero-meta enter grid gap-4 lg:grid-cols-[1fr_auto] lg:items-center lg:gap-8" style={{ ["--i" as string]: 2 }}>
           <NextShow org={org} buildNow={buildNow} />
           <div className="lg:w-64 lg:border-l lg:border-white/15 lg:pl-8">
             <CityPicker next={c.next} visited={c.visited} />
@@ -160,7 +150,7 @@ function RepertoireColumn({ title, shows, dated }: { title: string; shows: Compa
             </div>
             {dated.has(s.slug) ? (
               <ShowDatesButton show={s.slug} className="org-link t-label shrink-0">
-                Date →
+                Vezi datele
               </ShowDatesButton>
             ) : null}
           </li>
@@ -364,6 +354,10 @@ export function CompanyPage({ org }: { org: CompanyConfig }) {
   ];
   return (
     <>
+      {org.accent ? (
+        // The theme sets the accent inline on <html>; !important lets this site use its own brand colour.
+        <style>{`html{--color-accent:${org.accent.color} !important;--accent-light:${org.accent.light}}`}</style>
+      ) : null}
       <a href="#content" className="t-label sr-only z-[80] bg-accent px-4 py-3 text-on-accent focus:not-sr-only focus:fixed focus:left-3 focus:top-3">
         Sari la conținut
       </a>

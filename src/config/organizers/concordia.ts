@@ -33,6 +33,7 @@ const P = (date: string, title: string, city: string): PastShow => ({ date, titl
 export const company: CompanyConfig = {
   name: "Compania de Teatru Concordia",
   shortName: "Concordia",
+  accent: { color: "#64B838", light: "#8fd468" },
   tagline: "Teatrul nu așteaptă publicul într-un singur loc. Merge el după public.",
   description: "Teatru independent fondat de Monica Davidescu și Aurelian Temișan. Spectacole și concerte în toată țara.",
   timezone: "Europe/Bucharest",
