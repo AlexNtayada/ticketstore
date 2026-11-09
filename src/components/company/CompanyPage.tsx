@@ -354,6 +354,10 @@ export function CompanyPage({ org }: { org: CompanyConfig }) {
   ];
   return (
     <>
+      {org.accent ? (
+        // The theme sets the accent inline on <html>; !important lets this site use its own brand colour.
+        <style>{`html{--color-accent:${org.accent.color} !important;--accent-light:${org.accent.light}}`}</style>
+      ) : null}
       <a href="#content" className="t-label sr-only z-[80] bg-accent px-4 py-3 text-on-accent focus:not-sr-only focus:fixed focus:left-3 focus:top-3">
         Sari la conținut
       </a>

@@ -446,7 +446,7 @@ html[data-skin="sky"] .hero-kicker {
 }
 html[data-skin="sky"] .hero-kicker > span {
   border-radius: 999px;
-  background: #ff9a5c;
+  background: var(--accent-light, #ff9a5c);
 }
 html[data-skin="sky"] .hero-meta {
   --color-text-primary: #101828;
@@ -765,7 +765,7 @@ html[data-skin] .org-hero-meta .t-meta {
   width: 8px;
   height: 8px;
   border-radius: 999px;
-  background: #ff9a5c;
+  background: var(--accent-light, #ff9a5c);
   box-shadow: 0 0 0 0 rgba(255, 154, 92, 0.6);
   animation: sub-pulse 2s ease-out infinite;
 }
@@ -830,7 +830,7 @@ html[data-skin] #site-footer.org-footer {
   transition: color var(--motion-fast);
 }
 .org-footer-link:hover {
-  color: #ff9a5c;
+  color: var(--accent-light, #ff9a5c);
 }
 .org-footer-ts {
   display: flex;
@@ -905,7 +905,7 @@ label:has(select) {
 }
 .co-city:hover,
 .co-city:focus-within {
-  border-color: #ff9a5c;
+  border-color: var(--accent-light, #ff9a5c);
 }
 .co-city option,
 .co-city optgroup {
