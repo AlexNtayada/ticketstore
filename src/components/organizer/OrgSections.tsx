@@ -138,8 +138,8 @@ export function Subscription({ org }: { org: OrganizerConfig }) {
               {title}
             </h2>
             <p className="mt-4 max-w-md font-display text-[clamp(1.25rem,2.2vw,1.9rem)] leading-snug">{body}</p>
-            <p className="t-body mt-4 max-w-md text-white/70">{note}</p>
-            <a href="#newsletter" className="cta mt-8 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-white px-6 font-semibold text-[#0b1220]">
+            <p className="mt-4 max-w-md text-[1rem] leading-relaxed !text-white/85">{note}</p>
+            <a href="#newsletter" className="cta mt-8 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-white px-6 font-semibold text-accent">
               Anunță-mă când apare
               <ArrowUpRight aria-hidden className="size-4 rotate-90" />
             </a>

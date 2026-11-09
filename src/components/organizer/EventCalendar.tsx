@@ -94,8 +94,7 @@ export function EventCalendar({ org, buildNow }: { org: OrganizerConfig; buildNo
             ))}
           </div>
           <label className="org-select t-label flex items-center gap-3">
-            <span className="text-muted">Sala</span>
-            <select value={venue} onChange={(e) => setVenue(e.target.value)} className="min-w-0 flex-1 bg-transparent text-fg lg:w-72">
+            <select aria-label="Sala" value={venue} onChange={(e) => setVenue(e.target.value)} className="min-w-0 flex-1 bg-transparent text-fg lg:w-72">
               <option value="">Toate sălile</option>
               {venues.map((v) => (
                 <option key={v} value={v}>
