@@ -160,7 +160,7 @@ function RepertoireColumn({ title, shows, dated }: { title: string; shows: Compa
             </div>
             {dated.has(s.slug) ? (
               <ShowDatesButton show={s.slug} className="org-link t-label shrink-0">
-                Date →
+                Vezi datele
               </ShowDatesButton>
             ) : null}
           </li>
