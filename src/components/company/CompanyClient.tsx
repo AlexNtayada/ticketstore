@@ -272,7 +272,7 @@ export function TourStops({ org, buildNow, cities }: { org: CompanyConfig; build
               </p>
               {href ? (
                 <a href={href} target="_blank" rel="noopener noreferrer" className="org-link t-label mt-2 inline-block">
-                  Bilete →<span className="sr-only"> pentru {e.title}, {e.city} (se deschide într-un tab nou)</span>
+                  Vezi bilete<span className="sr-only"> pentru {e.title}, {e.city} (se deschide într-un tab nou)</span>
                 </a>
               ) : (
                 <p className="t-label mt-2 text-muted">{e.status === "soldout" ? "Sold out" : "Bilete prin alt canal"}</p>
